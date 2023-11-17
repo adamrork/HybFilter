@@ -110,3 +110,21 @@ IDS/
 
 All cleaned "FAA" and "FNA" files will be written to `FAA/` and `FNA/` respectively. To denote they have been processed, the suffix "_sR" (samples removed) will be added to each file's basename.
 The directory `IDS/` will contain one file listing those samples which passed the filter and whose sequences were retained in your output loci files.
+
+## Rationale
+
+### 01_cleanHybpiper.sh
+
+This script was written primarily to make the data written to the HybPiper base directory easier to navigate. An added benefit, especially for HPC users, is that the removal of the gene directories also frees up substantial disk space and inode allocation.
+
+### 02_removePtc.sh
+
+This script was written primarily to remove sequences containing premature termination codons (ptc). Although many such ptc may be artifacts, the product of sequencing or assembly errors, those which are real could imply that the sequences containing them are pseudogenes. In the context of a standard phylogenetic analysis, such data might not only be low-signal, but high-noise due to relaxed selection. This could, of course, be tested on a sequence-by-sequence basis and clearly pseudogenized sequences filtered out; this approach represents a blunt yet effective one for handling such data.
+
+### 03_removeLoci.sh
+
+This script was written primarily to remove loci which are represented by a small proportion of the total samples analyzed via HybPiper. Imagine a locus represented by only 10 of the 100 samples analyzed by HybPiper. That locus will thus be comprised of at least 90% ambiguous data distributed across 90% of the samples in the final phylogenetic analysis. Especially if we assume the species for which sequences did not assemble do actually possess that locus in their genomes, the inclusion of such a locus has the potential to introduce noise and uncertainty into the analysis. Amplified across multiple sparsely-assembled loci, the potential to introduce substantial noise and uncertainty exists. This is an issue that must be considered when working with hDNA in museomics contexts especially; the lack of sequence assembly could be related to several factors such as specimen storage conditions, specimen age, mistakes made during DNA extraction, library preparation, sequencing, etc.
+
+### 04_removeSamples.sh
+
+This script was written primarily to remove samples which are represented by a small proportion of the total loci assembled via HybPiper. Imagine a sample represented by only 10 of the 100 loci assembled by HybPiper. That sample will thus be comprised of a substantial proportion of ambiguous data in the final phylogenetic analysis. Especially if we assume such a sample does actually possess most of those 100 loci in its genome, the inclusion of such a sample has the potential to introduce noise and uncertainty into the analysis. Amplified across multiple loci-poor samples, the potential to introduce substantial noise and uncertainty exists. This is an issue that must be considered when working with hDNA in museomics contexts especially; the lack of sequence assembly could be related to several factors such as specimen storage conditions, specimen age, mistakes made during DNA extraction, library preparation, sequencing, etc.

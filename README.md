@@ -85,7 +85,7 @@ The directory `IDS/` will contain one file listing those loci which passed the f
 
 ### Step 04: removeSamples
 
-To run `04_removeSamples.sh`, you must supply the PATH to your input data directory (the output directory provided in step 03), the PATH to the output directory you prefer your cleaned data to be written to, and the namelist file used by HybPiper. You must also supply a value between 0.00 and 1.00, which represents the proportion of loci each sample must have to have in order for its sequences to be retained in your output locus files.
+To run `04_removeSamples.sh`, you must supply the PATH to your input data directory (the output directory provided in step 03), the PATH to the output directory you prefer your cleaned data to be written to, and the namelist file used by HybPiper. You must also supply a value between 0.00 and 1.00, which represents the proportion of loci each sample must have to have in order for its sequences to be retained in your output loci files.
 
 ```
 04_removeSamples.sh -i /PATH/TO/INPUT/DIRECTORY -o /PATH/TO/OUTPUT/DIRECTORY -n /PATH/TO/namelist.txt -p FLOAT
@@ -98,7 +98,7 @@ For example, if you have:
 - 50 loci represented in Species_B
 - 40 loci represented in Species_C
 
-and you set `-p 0.50`, all sequences belonging to Species_A (60 >= (0.50 * 100)) and Species_B (50 >= (0.50 * 100)) will be retained in your output locus files whereas all sequences beloning to Species_C (40 < (0.50 * 100)) will be removed from your output locus files.
+and you set `-p 0.50`, all sequences belonging to Species_A (60 >= (0.50 * 100)) and Species_B (50 >= (0.50 * 100)) will be retained in your output loci files whereas all sequences beloning to Species_C (40 < (0.50 * 100)) will be removed from your output loci files.
 
 Three new directories will be created in your output directory during this process:
 
@@ -109,4 +109,4 @@ IDS/
 ```
 
 All cleaned "FAA" and "FNA" files will be written to `FAA/` and `FNA/` respectively. To denote they have been processed, the suffix "_sR" (samples removed) will be added to each file's basename.
-The directory `IDS/` will contain one file listing those samples which passed the filter and whose sequences were retained in your output locus files.
+The directory `IDS/` will contain one file listing those samples which passed the filter and whose sequences were retained in your output loci files.

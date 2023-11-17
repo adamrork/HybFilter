@@ -94,9 +94,9 @@ To run `04_removeSamples.sh`, you must supply the PATH to your input data direct
 For example, if you have:
 
 - 100 loci in your Step 03 output directories
-- 60 loci represented in Species_A
-- 50 loci represented in Species_B
-- 40 loci represented in Species_C
+- 60 loci assembled from Species_A
+- 50 loci assembled from Species_B
+- 40 loci assembled from Species_C
 
 and you set `-p 0.50`, all sequences belonging to Species_A (60 >= (0.50 * 100)) and Species_B (50 >= (0.50 * 100)) will be retained in your output loci files whereas all sequences beloning to Species_C (40 < (0.50 * 100)) will be removed from your output loci files.
 

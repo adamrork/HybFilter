@@ -119,7 +119,7 @@ This script was written primarily to make the data written to the HybPiper base 
 
 ### 02_removePtc.sh
 
-This script was written primarily to remove sequences containing premature termination codons (ptc). Although many such ptc may be artifacts, the product of sequencing or assembly errors, those which are real suggest pseudogenization of the sequences containig them. In the context of a standard phylogenetic analysis, such data might not only be low-signal, but high-noise due to relaxed selection. This could, of course, be tested on a sequence-by-sequence basis and clearly pseudogenized sequences filtered out; this approach represents a blunt yet effective one for handling such data.
+This script was written primarily to remove sequences containing premature termination codons (ptc). Although many such ptc may be artifacts, the product of sequencing or assembly errors, those which are real suggest pseudogenization of the sequences containing them. Such sequences may be lower signal/higher noise relative to the other assembled sequences for a given locus, although overall sequence divergence would likely be low given that said sequences assembled to the target sequence(s) in the first place.
 
 ### 03_removeLoci.sh
 

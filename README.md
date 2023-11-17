@@ -10,16 +10,16 @@ HybFilter has been tested on CentOS Linux release 7.9.2009 using the output of H
 
 ## Important Note
 
-This pipeline has only been tested as a whole and in order (i.e., 01_cleanHybPiper.sh -> 02_removePtc.sh -> 03_removeLoci.sh -> 04_removeSamples.sh). While all scripts should work individually and out of their expected order, I cannot guarantee this.
+This pipeline has only been tested as a whole and in order (i.e., 01_cleanHybpiper.sh -> 02_removePtc.sh -> 03_removeLoci.sh -> 04_removeSamples.sh). While all scripts should work individually and out of their expected order, I cannot guarantee this.
 
 ## Pipeline Input
 
-### Step 01: cleanHybPiper
+### Step 01: cleanHybpiper
 
-To run `01_cleanHybPiper.sh`, you must supply the PATH to your HybPiper base directory and the namelist file used by HybPiper.
+To run `01_cleanHybpiper.sh`, you must supply the PATH to your HybPiper base directory and the namelist file used by HybPiper.
 
 ```
-01_cleanHybPiper.sh -h /PATH/TO/HYBPIPER/DIRECTORY -n /PATH/TO/namelist.txt
+01_cleanHybpiper.sh -h /PATH/TO/HYBPIPER/DIRECTORY -n /PATH/TO/namelist.txt
 ```
 
 This script cleans and reorganizes the HybPiper base directory. Four new directories will be created during this process:

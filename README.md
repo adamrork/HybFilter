@@ -9,8 +9,8 @@ HybFilter is a suite of tools designed to clean and filter the output of the Hyb
 ```
 01_cleanHybpiper.sh reorganizes the HybPiper base directory.  
 02_removePtc.sh removes sequences from gene files which contain premature termination codons in frame 1.  
-03_removeLoci.sh removes loci files which are represented by less than a given proportion of samples.  
-04_removeSamples.sh removes sequences from loci files belonging to taxa which are represented by less than a given proportion of loci.
+03_removeLoci.sh removes loci files represented by less than a given proportion of samples.  
+04_removeSamples.sh removes sequences from loci files belonging to samples represented by less than a given proportion of loci.
 ```
 
 

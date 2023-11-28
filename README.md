@@ -10,13 +10,13 @@ HybFilter is a suite of tools designed to clean and filter the output of the Hyb
 01_cleanHybpiper.sh reorganizes the HybPiper base directory.  
 02_removePtc.sh removes sequences from gene files which contain premature termination codons in frame 1.  
 03_removeLoci.sh removes loci files represented by less than a given proportion of samples.  
-04_removeSamples.sh removes sequences from loci files belonging to samples represented by less than a given proportion of loci.
+04_removeSamples.sh removes all sequences belonging to samples represented by less than a given proportion of loci.
 ```
 
 
 ## Software Requirements
 
-HybFilter has been tested to run on the output of the HybPiper 2.1.6 pipeline. The full pipeline consists of the following commands:
+HybFilter has been tested on the output of the HybPiper 2.1.6 pipeline. The full pipeline consists of the following commands:
 
 ```
 1.  hybpiper assemble  
@@ -33,6 +33,7 @@ HybFilter has been tested on CentOS Linux (release 7.9.2009).
 
 ## Sample Naming Convention
 
+It is strongly recommended that your sample names contain only alphanumeric characters. Words should be seperated by underscores or hyphens.  
 Your sample names should not contain any of the following characters:
 
 ```
@@ -41,8 +42,6 @@ Your sample names should not contain any of the following characters:
 "*" asterisks
 ":" colons
 ```
-
-It is recommended that your sample names contain only alphanumeric characters. Words should be seperated by underscores or hyphens.
 
 ## Using the HybFilter Pipeline
 

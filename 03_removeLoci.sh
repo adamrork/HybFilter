@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# 03_removeLoci.sh #
-# This script removes loci files which are represented by #
+# 03_removeGenes.sh #
+# This script removes gene files which are represented by #
 # less than a certain proportion of your total samples #
 
 # Create a help function which will print if arguments are empty #
@@ -13,7 +13,7 @@ helpFunction()
 	echo -e "\t-i Path to the directory containing your FAA and FNA data subdirectories"
 	echo -e "\t-o Path to your preferred output directory"
 	echo -e "\t-n Namelist file used by hybpiper"
-	echo -e "\t-p Loci containing less than this proportion of total samples will be discarded (0.00 - 1.00)"
+	echo -e "\t-p Genes containing less than this proportion of total samples will be discarded (0.00 - 1.00)"
 	exit 1
 }
 
@@ -63,7 +63,7 @@ then
 	mkdir IDS
 fi
 
-# Identify loci represented by too few samples #
+# Identify genes represented by too few samples #
 
 cd "$INPUT_PATH"/FAA/
 
@@ -71,22 +71,22 @@ grep -c ">" *.FAA | \
 	sed -e 's/:/\t/g' -e 's/.FAA//g' | \
 	awk -v SAMPLES="$SAMPLES" '{ $3 = sprintf("%.2f", $2 / SAMPLES) } 1' | \
 	awk -v PROPORTION="$PROPORTION" '(NR > 1) && ($3 >= PROPORTION)' | \
-	awk '{print $1}' > "$OUTPUT_PATH"/IDS/PASSING_LOCI.ids
+	awk '{print $1}' > "$OUTPUT_PATH"/IDS/PASSING_GENES.ids
 
-# Remove amino acid loci files represented by too few samples #
+# Remove amino acid gene files represented by too few samples #
 
 cd "$INPUT_PATH"/FAA/
 
-for i in $(cat "$OUTPUT_PATH"/IDS/PASSING_LOCI.ids)
+for i in $(cat "$OUTPUT_PATH"/IDS/PASSING_GENES.ids)
 do
 	cat "$i".FAA > "$OUTPUT_PATH"/FAA/"$i"_gR.FAA
 done
 
-# Remove nucleotide loci files represented by too few samples #
+# Remove nucleotide gene files represented by too few samples #
 
 cd "$INPUT_PATH"/FNA/
 
-for i in $(cat "$OUTPUT_PATH"/IDS/PASSING_LOCI.ids)
+for i in $(cat "$OUTPUT_PATH"/IDS/PASSING_GENES.ids)
 do
 	cat "$i".FNA > "$OUTPUT_PATH"/FNA/"$i"_gR.FNA
 done

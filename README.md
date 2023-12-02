@@ -7,10 +7,10 @@ Current version: 1.0 (November 2023)
 HybFilter is a suite of tools designed to clean and filter the output of the HybPiper targeted enrichment data analysis pipeline. HybFilter consists of four scripts:
 
 ```
-01_cleanHybpiper.sh reorganizes the HybPiper base directory.  
-02_removePtc.sh removes sequences from gene files which contain premature termination codons in frame 1.  
-03_removeLoci.sh removes loci files represented by less than a given proportion of samples.  
-04_removeSamples.sh removes all sequences belonging to samples represented by less than a given proportion of loci.
+01_cleanHybpiper.sh cleans and reorganizes the HybPiper base directory.  
+02_removePtc.sh removes sequences from gene files which contain premature termination codons.  
+03_removeGenes.sh removes gene files represented by less than a given proportion of samples.  
+04_removeSamples.sh removes all sequences belonging to samples represented by less than a given proportion of genes.
 ```
 
 
@@ -80,24 +80,24 @@ FNA/
 IDS/
 ```
 
-All cleaned "FAA" and "FNA" files will be written to `FAA/` and `FNA/` respectively. Processed files will have the suffix "_pR" (ptcs removed) appended to their basename. The directory `IDS/` will contain one file per locus, each containing the fasta header(s) of those sequences containing premature termination codons. Empty files represent loci in which zero sequences had at least one ptc.
+All cleaned "FAA" and "FNA" files will be written to `FAA/` and `FNA/` respectively. Processed files will have the suffix "_pR" (ptcs removed) appended to their basename. The directory `IDS/` will contain one file per gene, each containing the fasta header(s) of those sequences containing premature termination codons. Empty files represent genes in which zero sequences had at least one ptc.
 
-### Step 03: Remove loci containing below a certain proportion of samples
+### Step 03: Remove genes containing below a certain proportion of samples
 
-To run `03_removeLoci.sh`, you must supply the PATH to your input data directory (the output directory provided in step 02), the PATH to the output directory you prefer your cleaned data to be written to, and the namelist file used by HybPiper. You must also supply a value between 0.00 and 1.00, which represents the proportion of samples in your namelist file that each locus file must have to be written to your output directory.
+To run `03_removeGenes.sh`, you must supply the PATH to your input data directory (the output directory provided in step 02), the PATH to the output directory you prefer your cleaned data to be written to, and the namelist file used by HybPiper. You must also supply a value between 0.00 and 1.00, which represents the proportion of samples in your namelist file that each gene file must have to be written to your output directory.
 
 ```
-03_removeLoci.sh -i /PATH/TO/INPUT/DIRECTORY -o /PATH/TO/OUTPUT/DIRECTORY -n /PATH/TO/namelist.txt -p FLOAT
+03_removeGenes.sh -i /PATH/TO/INPUT/DIRECTORY -o /PATH/TO/OUTPUT/DIRECTORY -n /PATH/TO/namelist.txt -p FLOAT
 ```
 
 For example, if you have
 
 - 100 samples in your namelist file
-- 60 samples represented in LOCUS_01.FAA
-- 50 samples represented in LOCUS_02.FAA
-- 40 samples represented in LOCUS_03.FAA
+- 60 samples represented in GENE_01.FAA
+- 50 samples represented in GENE_02.FAA
+- 40 samples represented in GENE_03.FAA
 
-and you set `-p 0.50`, LOCUS_01.FAA and LOCUS_02.FAA will be written to your output directory whereas LOCUS_03.FAA will not. Three new directories will be created in your output directory:
+and you set `-p 0.50`, GENE_01.FAA and GENE_02.FAA will be written to your output directory whereas GENE_03.FAA will not. Three new directories will be created in your output directory:
 
 ```
 FAA/
@@ -105,11 +105,11 @@ FNA/
 IDS/
 ```
 
-All cleaned "FAA" and "FNA" files will be written to `FAA/` and `FNA/` respectively. Processed files will have the suffix "_lR" (loci removed) appended to their basename. The directory `IDS/` will contain one file listing each locus which passed the filter and were written to your output directory.
+All cleaned "FAA" and "FNA" files will be written to `FAA/` and `FNA/` respectively. Processed files will have the suffix "_gR" (genes removed) appended to their basename. The directory `IDS/` will contain one file listing each gene which passed the filter and were written to your output directory.
 
-### Step 04: Remove samples containing below a certain proportion of loci
+### Step 04: Remove samples containing below a certain proportion of genes
 
-To run `04_removeSamples.sh`, you must supply the PATH to your input data directory (the output directory provided in step 03), the PATH to the output directory you prefer your cleaned data be written to, and the namelist file used by HybPiper. You must also supply a value between 0.00 and 1.00, which represents the proportion of loci each sample must have to have in order for its sequences to be retained in your output loci files.
+To run `04_removeSamples.sh`, you must supply the PATH to your input data directory (the output directory provided in step 03), the PATH to the output directory you prefer your cleaned data be written to, and the namelist file used by HybPiper. You must also supply a value between 0.00 and 1.00, which represents the proportion of genes each sample must have to have in order for its sequences to be retained in your output gene files.
 
 ```
 04_removeSamples.sh -i /PATH/TO/INPUT/DIRECTORY -o /PATH/TO/OUTPUT/DIRECTORY -n /PATH/TO/namelist.txt -p FLOAT
@@ -117,12 +117,12 @@ To run `04_removeSamples.sh`, you must supply the PATH to your input data direct
 
 For example, if you have
 
-- 100 loci in your Step 03 output directories
-- 60 loci assembled from Species_A
-- 50 loci assembled from Species_B
-- 40 loci assembled from Species_C
+- 100 genes in your Step 03 output directories
+- 60 genes assembled from Species_A
+- 50 genes assembled from Species_B
+- 40 genes assembled from Species_C
 
-and you set `-p 0.50`, all sequences belonging to Species_A and Species_B will be retained in your output loci files whereas all sequences beloning to Species_C will be removed from your output loci files. Three new directories will be created in your output directory:
+and you set `-p 0.50`, all sequences belonging to Species_A and Species_B will be retained in your output gene files whereas all sequences beloning to Species_C will be removed from your output gene files. Three new directories will be created in your output directory:
 
 ```
 FAA/
@@ -130,4 +130,4 @@ FNA/
 IDS/
 ```
 
-All cleaned "FAA" and "FNA" files will be written to `FAA/` and `FNA/` respectively. Processed files will have the suffix "_sR" (samples removed) appended to their basename. The directory `IDS/` will contain one file listing those samples which passed the filter and whose sequences were retained in your output loci files.
+All cleaned "FAA" and "FNA" files will be written to `FAA/` and `FNA/` respectively. Processed files will have the suffix "_sR" (samples removed) appended to their basename. The directory `IDS/` will contain one file listing those samples which passed the filter and whose sequences were retained in your output gene files.

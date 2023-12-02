@@ -79,7 +79,7 @@ cd "$INPUT_PATH"/FAA/
 
 for i in $(cat "$OUTPUT_PATH"/IDS/PASSING_LOCI.ids)
 do
-	cat "$i".FAA > "$OUTPUT_PATH"/FAA/"$i"_lR.FAA
+	cat "$i".FAA > "$OUTPUT_PATH"/FAA/"$i"_gR.FAA
 done
 
 # Remove nucleotide loci files represented by too few samples #
@@ -88,5 +88,5 @@ cd "$INPUT_PATH"/FNA/
 
 for i in $(cat "$OUTPUT_PATH"/IDS/PASSING_LOCI.ids)
 do
-	cat "$i".FNA > "$OUTPUT_PATH"/FNA/"$i"_lR.FNA
+	cat "$i".FNA > "$OUTPUT_PATH"/FNA/"$i"_gR.FNA
 done

@@ -16,7 +16,7 @@ HybFilter is a suite of tools designed to clean and filter the output of the Hyb
 
 ## Software Requirements
 
-HybFilter has been tested on the output of the HybPiper 2.1.6 pipeline. The full pipeline consists of the following commands:
+HybFilter has been tested on the output of the HybPiper 2.1.6 pipeline. For the purposes of HybFilter, the full HybPiper pipeline consists of the following commands:
 
 ```
 1.  hybpiper assemble  

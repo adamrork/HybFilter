@@ -33,8 +33,7 @@ HybFilter has been tested on CentOS Linux (release 7.9.2009).
 
 ## Sample Naming Convention
 
-It is strongly recommended that your sample names contain only alphanumeric characters. Words should be seperated by underscores or hyphens.  
-Your sample names should not contain any of the following characters:
+It is strongly recommended that your sample names contain only alphanumeric characters with underscores or hyphens seperating words. Your sample names should not contain any of the following characters:
 
 ```
 " " whitespaces / tabs

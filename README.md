@@ -128,4 +128,4 @@ FNA/
 IDS/
 ```
 
-All cleaned "FAA" and "FNA" files will be written to `FAA/` and `FNA/` respectively. Processed files will have the suffix "_sR" (samples removed) appended to their basename. The directory `IDS/` will contain one file listing those samples which passed the filter and whose sequences were retained in your output gene files.
+All cleaned `.FAA` and `.FNA` files will be written to `FAA/` and `FNA/` respectively. Processed files will have the suffix "_sR" (samples removed) appended to their basename. The directory `IDS/` will contain one file listing those samples which passed the filter and whose sequences were retained in your output gene files.

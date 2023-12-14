@@ -60,7 +60,7 @@ FILES/
 PARALOGS/
 ```
 
-All non-empty files in the base directory with the extensions `.FAA` and `.FNA` will be moved into the `FAA/` and `FNA/` directories respectively. Empty files with those extensions will be deleted. All remaining files (e.g., `hybpiper_stats.tsv`, `namelist.txt`, `paralog_heatmap.png`, `paralog_report.tsv`) will be moved into the `FILES/` directory. The directories `paralogs_all/` and `paralogs_no_chimeras/` will be moved into the `PARALOGS/` directory. All sample directories in the base directory will be deleted.
+All non-empty files in the base directory with the extensions `.FAA` and `.FNA` will be moved into the `FAA/` and `FNA/` directories respectively. Empty files with those extensions will be deleted. All remaining files will be moved into the `FILES/` directory. The directories `paralogs_all/` and `paralogs_no_chimeras/` will be moved into the `PARALOGS/` directory. All sample directories in the base directory will be deleted.
 
 ### Step 02: Remove sequences containing premature termination codons
 
@@ -90,7 +90,7 @@ To run `03_removeGenes.sh`, you must supply the PATH to your input data director
 
 For example, if you have
 
-- 100 samples in your namelist file
+- 100 samples in your `namelist.txt` file
 - 60 samples represented in `GENE_01.FAA`
 - 50 samples represented in `GENE_02.FAA`
 - 40 samples represented in `GENE_03.FAA`
